@@ -1,0 +1,82 @@
+<form [formGroup]="form">
+  <div nxLayout="grid">
+    <div nxRow>
+      <div nxCol="12,6,6">
+        <ng-container
+          *ngTemplateOutlet="
+            basicDropdown;
+            context: { form: form, name: dropdowns.d1.id, template: dropdowns.d1.template}
+          "
+        ></ng-container>
+      </div>
+      <div nxCol="12,6,6">
+        <ng-container
+          *ngTemplateOutlet="
+            basicDropdown;
+            context: { form: form, name: dropdowns.d2.id, template: dropdowns.d2.template}
+          "
+        ></ng-container>
+      </div>
+      <div nxCol="12,6,6">
+        <ng-container
+          *ngTemplateOutlet="
+            basicDropdown;
+            context: { form: form, name: dropdowns.d3.id, template: dropdowns.d3.template}
+          "
+        ></ng-container>
+      </div>
+      <div nxCol="12,6,6">
+        <ng-container
+          *ngTemplateOutlet="
+            basicDropdown;
+            context: { form: form, name: dropdowns.d4.id, template: dropdowns.d4.template}
+          "
+        ></ng-container>
+      </div>
+      <div nxCol="12,6,6">
+        <ng-container
+          *ngTemplateOutlet="
+            basicDropdown;
+            context: { form: form, name: dropdowns.d5.id, template: dropdowns.d5.template}
+          "
+        ></ng-container>
+      </div>
+    </div>
+    <div nxRow>
+      <div nxCol="12,6,2">
+        <button nxButton="primary small-medium" type="button" (click)="search()">Search</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<ng-template
+  #basicDropdown
+  let-form="form"
+  let-name="name"
+  let-template="template"
+>
+  <ng-container [formGroup]="form">
+    <nx-formfield [nxLabel]="template.label">
+      <nx-dropdown [formControlName]="name">
+        <nx-dropdown-item
+          *ngFor="let elem of typedDropdownTemplateConfig(template).elements"
+          [nxValue]="elem"
+        ></nx-dropdown-item>
+      </nx-dropdown>
+      <nx-error nxFormfieldError>This dropdown is required!</nx-error>
+    </nx-formfield>
+  </ng-container>
+</ng-template>
+
+<hr/>
+<h1>Debug</h1>
+<div nxRow>
+  <div nxCol="12">
+    <p class="nx-margin-y-0">Form value: {{ form.value | json }}</p>
+    <p class="nx-margin-y-0">Form status: {{ form.status | json }}</p>
+    <p class="nx-margin-y-0">Form errors: {{ obtainErrors() | json }}</p>
+    <pre>{{obtainDependents() | json}}</pre>
+    <pre>{{ dropdowns | json }}</pre>
+  </div>
+</div>
