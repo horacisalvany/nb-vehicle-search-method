@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { SearchOption } from './example.model';
+import { CircleToogle, SearchOption } from './example.model';
 // declare var $localize: any;
 
 @Component({
@@ -11,24 +11,28 @@ import { SearchOption } from './example.model';
 export class ExampleComponent implements OnInit, AfterViewInit {
   form: FormGroup;
 
-  searchOptionByPlate = {
-    value: SearchOption.BY_PLATE,
-    label: 'By Plate',
-    // label: $localize`:@@nb-vehicle-search-method.search-option.plate:Vehicle plate number`,
-    icon: 'product-car-front'
-  };
-  searchOptionByDetail = {
-    value: SearchOption.BY_DETAILS,
-    label: 'By Details',
-    // label: $localize`:@@nb-vehicle-search-method.search-option.detail:Vehicle details`,
-    icon: 'product-paper-document'
-  };
-  searchOptionBySmart = {
-    value: SearchOption.BY_SMART,
-    label: 'Smart Search',
-    // label: $localize`:@@nb-vehicle-search-method.search-option.smart:Smart search`,
-    icon: 'product-light-bulb-idea'
-  };
+  channel = 'retail';
+
+  circlesToogle: CircleToogle[] = [
+    {
+      value: SearchOption.BY_PLATE,
+      label: 'By Plate',
+      // label: $localize`:@@nb-vehicle-search-method.search-option.plate:Vehicle plate number`,
+      icon: 'product-car-front'
+    },
+    {
+      value: SearchOption.BY_DETAILS,
+      label: 'By Details',
+      // label: $localize`:@@nb-vehicle-search-method.search-option.detail:Vehicle details`,
+      icon: 'product-paper-document'
+    },
+    {
+      value: SearchOption.BY_SMART,
+      label: 'Smart Search',
+      // label: $localize`:@@nb-vehicle-search-method.search-option.smart:Smart search`,
+      icon: 'product-light-bulb-idea'
+    }
+  ];
 
   constructor(private ref: ChangeDetectorRef) {
     // @ts-ignore

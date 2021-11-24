@@ -1,7 +1,7 @@
 <form [formGroup]="form">
   <div nxLayout="grid">
     <div nxRow>
-      <div nxCol="12,6,6">
+      <div nxCol="12,12,6">
         <nx-circle-toggle-group
           [responsive]="false"
           [disabled]="isSearchOptionDisabledByAcl$ | async"
@@ -9,34 +9,14 @@
         >
           <div nxLayout="grid" class="search-option__grid">
             <div nxRow nxRowJustify="center">
-              <div nxCol="4">
+              <div nxCol="4" *ngFor="let circleToggle of circlesToogle">
                 <nx-circle-toggle
                   class="search-option__buttons"
-                  [value]="searchOptionByPlate.value"
-                  [icon]="searchOptionByPlate.icon"
-                  [label]="searchOptionByPlate.label"
-                  [checked]="getSearchType() === searchOptionByPlate.value"
+                  [value]="circleToggle.value"
+                  [icon]="circleToggle.icon"
+                  [label]="circleToggle.label"
+                  [checked]="getSearchType() === circleToggle.value"
                   [disabled]="isSearchOptionByPlateDisabledByAcl$ | async"
-                ></nx-circle-toggle>
-              </div>
-              <div nxCol="4">
-                <nx-circle-toggle
-                  class="search-option__buttons"
-                  [value]="searchOptionByDetail.value"
-                  [icon]="searchOptionByDetail.icon"
-                  [label]="searchOptionByDetail.label"
-                  [checked]="getSearchType() === searchOptionByDetail.value"
-                  [disabled]="isSearchOptionByDetailsDisabledByAcl$ | async"
-                ></nx-circle-toggle>
-              </div>
-              <div nxCol="4">
-                <nx-circle-toggle
-                  class="search-option__buttons"
-                  [value]="searchOptionBySmart.value"
-                  [icon]="searchOptionBySmart.icon"
-                  [label]="searchOptionBySmart.label"
-                  [checked]="getSearchType() === searchOptionBySmart.value"
-                  [disabled]="isSearchOptionBySmartDisabledByAcl$ | async"
                 ></nx-circle-toggle>
               </div>
             </div>
